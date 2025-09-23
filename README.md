@@ -1,4 +1,4 @@
-# Bank Marketing Term Deposit Prediction
+# Potential Talents
 
 ## Project Overview
 
