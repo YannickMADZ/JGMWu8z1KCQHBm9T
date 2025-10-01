@@ -1,68 +1,67 @@
-# Potential Talents
+# Talent Sourcing and Management - Candidate Ranking System
 
 ## Project Overview
 
-This project focuses on predicting whether customers will subscribe to a term deposit based on direct marketing campaign data from a European banking institution. The marketing campaign involves making phone calls to customers, often multiple times, to promote term deposit subscriptions.
+This project implements a machine learning-powered pipeline to automate talent sourcing and candidate ranking for technology roles. The system addresses key challenges in identifying suitable candidates by analyzing available profile information and generating fitness scores to prioritize potential hires.
 
-## Objective
+## Problem Statement
 
-**Primary Goal:** Predict if a customer will subscribe (yes/no) to a term deposit (target variable `y`)
+Traditional talent sourcing involves significant manual effort across three key areas:
+- Understanding client requirements and role specifications
+- Identifying what makes a candidate suitable for specific roles
+- Locating talented individuals efficiently
 
-**Success Metric:** Achieve high accuracy using 5-fold cross-validation
-
-## Business Questions
-
-1. **Customer Segmentation:** Identify customers who are more likely to buy the investment product and determine which customer segments should be prioritized
-2. **Feature Importance:** Understand what drives customer purchase decisions and identify key features to focus on
-
-## Methodology
-
-### Models Implemented
-- **XGBoost** (Best performing model)
-- **Random Forest**
-- **Logistic Regression**
-
-### Model Selection Approach
-- **Evaluation Metric:** F1-score (primary metric due to class imbalance)
-- **Class Imbalance Handling:** Applied SMOTE (Synthetic Minority Oversampling Technique) to address the unbalanced classes in the dataset
-- **Threshold Optimization:** Used `predict_proba` to generate probability predictions and tested thresholds from 0.2 to 0.8 to optimize F1-score performance
-- **Cross-Validation:** 5-fold cross-validation for robust model evaluation
-
-### Best Model Performance
-**XGBoost** achieved the highest F1-score after threshold optimization. The model was further optimized using GridSearchCV for hyperparameter tuning to maximize performance.
+This solution aims to automate candidate evaluation and ranking while enabling continuous improvement through feedback mechanisms.
 
 ## Key Features
 
-The model utilizes various customer attributes including:
-- Demographics (age, job, marital status, education)
-- Financial information (balance, default status, loans)
-- Contact information (contact type, timing, duration)
-- Campaign details (number of contacts, previous outcomes)
+### Core Functionality
+- **Candidate Fitness Prediction**: Machine learning models that assess candidate suitability based on profile data
+- **Intelligent Ranking**: Automated ranking of candidates by fitness scores for given roles
+- **Dynamic Re-ranking**: Real-time reordering of candidate lists based on user feedback
+- **Keyword-based Search**: Support for role-specific keyword queries (e.g., "full-stack software engineer", "aspiring human resources")
 
-## Technical Implementation
+### Interactive Capabilities
+- **Starring System**: Mark ideal candidates to provide supervisory signals
+- **Adaptive Learning**: Model refinement based on human feedback
+- **Bias Mitigation**: Automated procedures to reduce human bias in candidate selection
 
-### Model Training
-1. Data preprocessing and feature engineering
-2. Applied SMOTE to handle class imbalance in the target variable
-3. Training multiple models (XGBoost, Random Forest, Logistic Regression)
-4. Used GridSearchCV for hyperparameter optimization on the best performing model (XGBoost)
+## Technical Approach
 
-### Threshold Optimization
-- Generated probability predictions using `predict_proba`
-- Systematically tested thresholds from 0.2 to 0.8
-- Selected optimal threshold based on F1-score performance
-- This approach ensures balanced precision and recall for business impact
+### Machine Learning Pipeline
+- Feature engineering from candidate profiles
+- Predictive modeling for fitness scoring
+- Ranking algorithms optimized for talent sourcing
+- Continuous learning from user interactions
 
-### Model Evaluation
-- 5-fold cross-validation for reliable performance estimation
-- F1-score as primary metric (addressing class imbalance)
-- Accuracy tracking to meet business requirements
+### Re-ranking Mechanism
+- Real-time model adjustment when candidates are starred
+- Improved ranking accuracy with each user interaction
+- Preservation of ranking quality across different roles
 
-## Business Impact
+### Filtering & Optimization
+- Automated candidate filtering to remove irrelevant profiles
+- Dynamic cut-off determination for candidate qualification
+- Cross-role applicability without losing high-potential candidates
 
-This machine learning solution enables the banking client to:
-- **Improve Call Efficiency:** Focus efforts on customers with higher subscription probability
-- **Optimize Resource Allocation:** Prioritize high-potential customer segments
-- **Data-Driven Decisions:** Leverage interpretable model insights for campaign strategy
-- **Measurable ROI:** Track and improve campaign success rates
+## Usage
 
+### Input
+- Candidate profiles with anonymized personal information
+- Role-specific keywords for targeted searches
+- User feedback through candidate starring
+
+### Output
+- Ranked candidate lists by fitness probability (0-1)
+- Continuously improved rankings based on feedback
+- Filtered candidate pools with quality assurance
+
+## Success Metrics
+- Accurate fitness prediction and candidate ranking
+- Improved ranking quality with user feedback
+- Effective filtering of unsuitable candidates
+- Robust performance across different roles
+- Reduced manual review time and human bias
+
+## Future Enhancements
+The system provides a foundation for exploring additional automation features and bias reduction techniques to further streamline the talent sourcing process.
